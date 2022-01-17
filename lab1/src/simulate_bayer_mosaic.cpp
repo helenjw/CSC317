@@ -7,7 +7,21 @@ void simulate_bayer_mosaic(
   std::vector<unsigned char> & bayer)
 {
   bayer.resize(width*height);
-  ////////////////////////////////////////////////////////////////////////////
-  // Add your code here
-  ////////////////////////////////////////////////////////////////////////////
+  
+  for (int row = 0; row < height; row++) {
+    for (int col = 0; col < width; col++) {
+      int index = col + width * row;
+
+      // Even row - blue/green
+      if (row % 2 == 0) {
+        bayer[index] = (col % 2 == 0) ? rgb[3 * index + 2] : rgb[3 * index + 1];
+      }
+
+      // Odd row - red/green
+      else {
+        bayer[index] = (col % 2 == 0) ? rgb[3 * index + 1] : rgb[3 * index + 0];
+      }
+
+    }
+  }
 }
