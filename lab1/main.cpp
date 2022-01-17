@@ -41,20 +41,28 @@ int main(int argc, char *argv[])
   // Write to .ppm file format
   write_ppm("rgb.ppm",rgb,width,height,3);
 
+  // Convert to gray
+  std::vector<unsigned char> gray;
+  rgb_to_gray(rgb,width,height,gray);
+  write_ppm("gray.ppm",gray,width,height,1);
+
   // Reflection
   std::vector<unsigned char> reflected;
   reflect(rgb,width,height,3,reflected);
   write_ppm("reflected.ppm",reflected,width,height,3);
+
+  std::vector<unsigned char> reflected_gray;
+  reflect(gray,width,height,1,reflected_gray);
+  write_ppm("reflected_gray.ppm",reflected_gray,width,height,1);
 
   // Rotation
   std::vector<unsigned char> rotated;
   rotate(rgb,width,height,3,rotated);
   write_ppm("rotated.ppm",rotated,height,width,3);
 
-  // Convert to gray
-  std::vector<unsigned char> gray;
-  rgb_to_gray(rgb,width,height,gray);
-  write_ppm("gray.ppm",gray,width,height,1);
+  std::vector<unsigned char> rotated_gray;
+  rotate(gray,width,height,1,rotated_gray);
+  write_ppm("rotated_gray.ppm",rotated_gray,height,width,1);
 
   // Create fake bayer mosaic image
   std::vector<unsigned char> bayer;
