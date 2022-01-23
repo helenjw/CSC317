@@ -1,5 +1,7 @@
 #include "hsv_to_rgb.h"
 #include <cmath>
+#include <iostream>
+using namespace std;
 
 void hsv_to_rgb(
   const double h,
@@ -50,8 +52,10 @@ void hsv_to_rgb(
   }
 
   double m = v - c;
-  r += m;
-  g += m;
-  b += m;
+  r = 255.0 * (r + m);
+  g = 255.0 * (g + m);
+  b = 255.0 * (b + m);
   return;
 }
+
+
