@@ -26,27 +26,19 @@ void hue_shift(
       double g = rgb[index + 1];
       double b = rgb[index + 2];
       
-      // cout << r << " " << g << " " << b << endl;
       rgb_to_hsv(r, g, b, h, s, v);
-      // cout << h << " " << s << " " << v << endl;
 
       // shift the hue, then make sure new h is between 0 and 360 degrees
-      // h -= shift;
-      // if (h > 360.0) {
-      //   h = fmod(h, 360.0);
-      // }
-      // else if (h < 0.0)
-      // {
-      //   h = 360.0 - fmod(abs(h), 360.0);
-      // }
-
-      if (r < 0 || g < 0 || b < 0) {
-        cout << h<<endl;
+      h -= shift;
+      if (h > 360.0) {
+        h = fmod(h, 360.0);
+      }
+      else if (h < 0.0)
+      {
+        h = 360.0 - fmod(abs(h), 360.0);
       }
 
-      // cout << h << " " << s << " " << v << endl;
       hsv_to_rgb(h, s, v, r, g, b);
-      // cout << r << " " << g << " " << b << endl<<endl;
 
       shifted[index + 0] = r;
       shifted[index + 1] = g;

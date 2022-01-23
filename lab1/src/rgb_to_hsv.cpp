@@ -20,10 +20,6 @@ void rgb_to_hsv(
   double cmin = min({r_prime, g_prime, b_prime});
   double diff = cmax - cmin;
 
-  if (diff < 0){
-    cout << "here" << endl;
-  }
-
   // Compute H
   if (diff == 0) {
     h = 0;
