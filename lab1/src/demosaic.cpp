@@ -10,37 +10,45 @@ void demosaic(
 {
   rgb.resize(width*height*3);
   
-  for (int row = 1; row < height - 1; row++) {
-    for (int col = 1; col < width - 1; col++) {
+  for (int row = 0; row < height; row++) {
+    for (int col = 0; col < width; col++) {
       int r = 0;
       int g = 0;
       int b = 0;
 
-      // on a green bayer pixel
-      if ((row + col) % 2 == 0) {
-        g = bayer[col + width * row];
-        r = (bayer[col + width * (row - 1)] + bayer[col + width * (row + 1)]) / 2;
-        b = (bayer[(col + 1) + width * row] + bayer[(col - 1) + width * row]) / 2;
-      }
+      int rtotal = 0;
+      int gtotal = 0;
+      int btotal = 0;
 
-      // on a blue bayer pixel
-      else if (row % 2 == 0) {
-        b = bayer[col + width * row];
-        g = (bayer[col + width * (row - 1)] + bayer[col + width * (row + 1)] + bayer[(col + 1) + width * row] + bayer[(col - 1) + width * row]) / 4;
-        r = (bayer[(col - 1) + width * (row - 1)] + bayer[(col + 1) + width * (row + 1)] + bayer[(col + 1) + width * (row - 1)] + bayer[(col - 1) + width * (row + 1)]) / 4;
-      }
+        // bfs on neighbors
+        for (int i = row - 1; i <= row + 1; i++) {
+          for (int j = col - 1; j <= col + 1; j++) {
 
-      // on a red pixel 
-      else if (row % 2 == 1)
-      {
-        r = bayer[col + width * row];
-        g = (bayer[col + width * (row - 1)] + bayer[col + width * (row + 1)] + bayer[(col + 1) + width * row] + bayer[(col - 1) + width * row]) / 4;
-        b = (bayer[(col - 1) + width * (row - 1)] + bayer[(col + 1) + width * (row + 1)] + bayer[(col + 1) + width * (row - 1)] + bayer[(col - 1) + width * (row + 1)]) / 4;
-      }
+            if (0 <= i && i < height && 0 <= j && j < width) {
+              int val = bayer[j + width * i];
+              // green bayer pixel
+              if ((i + j) % 2 == 0) {
+                g += val;
+                gtotal++;
+              }
+              else if (i % 2 == 0)
+              {
+                b += val;
+                btotal++;
+              }
+              else {
+                r += val;
+                rtotal++;
+              }
+            }
+          }
+        }
       
-      rgb[3 * (col + width * row) + 0] = r;
-      rgb[3 * (col + width * row) + 1] = g;
-      rgb[3 * (col + width * row) + 2] = b;
+      rgb[3 * (col + width * row) + 0] = rtotal == 0 ? 0 : (r / rtotal);
+      rgb[3 * (col + width * row) + 1] = gtotal == 0 ? 0 : (g / gtotal);
+      rgb[3 * (col + width * row) + 2] = btotal == 0 ? 0 : (b / btotal);
     }
   }
+
+  return;
 }
