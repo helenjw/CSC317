@@ -12,14 +12,14 @@ void simulate_bayer_mosaic(
     for (int col = 0; col < width; col++) {
       int index = col + width * row;
 
-      // Even row - green/red
+      // Even row - green/blue
       if (row % 2 == 0) {
-        bayer[index] = (col % 2 == 0) ? rgb[3 * index + 2] : rgb[3 * index + 0];
+        bayer[index] = (col % 2 == 0) ? rgb[3 * index + 1] : rgb[3 * index + 2];
       }
 
-      // Odd row - blue/green
+      // Odd row - red/green
       else {
-        bayer[index] = (col % 2 == 0) ? rgb[3 * index + 2] : rgb[3 * index + 1];
+        bayer[index] = (col % 2 == 0) ? rgb[3 * index + 0] : rgb[3 * index + 1];
       }
 
     }
