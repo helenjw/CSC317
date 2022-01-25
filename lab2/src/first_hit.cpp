@@ -9,7 +9,7 @@ bool first_hit(
   double & t,
   Eigen::Vector3d & n)
 {
-  int smallest_t = numeric_limits<int>::max();
+  double smallest_t = numeric_limits<double>::max();
   hit_id = -1;
   Eigen::Vector3d normal;
 
@@ -32,4 +32,3 @@ bool first_hit(
   n = normal;
   return true;
 }
-
