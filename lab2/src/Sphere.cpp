@@ -6,16 +6,15 @@ using namespace Eigen;
 bool Sphere::intersect(
   const Ray & ray, const double min_t, double & t, Eigen::Vector3d & n) const
 {
-  Vector3d d, e, c;
-  d = ray.direction;
-  e = ray.origin;
-  c = this->center;
+  Vector3d d = ray.direction;
+  Vector3d e = ray.origin;
+  Vector3d c = this->center;
   double r = this->radius;
 
   // Ch. 4.4.1: [(d · d)]t^2 + [2d·(e - c)]t + [(e - c) · (e - c) - r^2] = 0 -> At^2 + Bt + C = 0
   double A, B, C;
   A = d.dot(d);
-  B = 2 * e.dot(e - c);
+  B = 2 * d.dot(e - c);
   C = (e - c).dot(e - c) - r * r;
 
   // Calculate discriminant: B^2 - 4AC
