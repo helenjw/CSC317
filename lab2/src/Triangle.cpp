@@ -52,6 +52,6 @@ bool Triangle::intersect(
     return false;
   }
 
-  n = -A_minus_C.cross(A_minus_B).normalized();
+  n = (B - A).cross(C - A).normalized();
   return true;
 }
