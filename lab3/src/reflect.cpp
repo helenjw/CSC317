@@ -1,9 +1,8 @@
 #include <Eigen/Core>
+using namespace Eigen;
 
 Eigen::Vector3d reflect(const Eigen::Vector3d & in, const Eigen::Vector3d & n)
 {
-  ////////////////////////////////////////////////////////////////////////////
-  // Replace with your code here:
-  return Eigen::Vector3d(0,0,0);
-  ////////////////////////////////////////////////////////////////////////////
+  Vector3d reflected = in - 2 * in.dot(n) * n; // r = in - 2(in · n)n
+  return reflected.normalized();
 }
