@@ -30,7 +30,7 @@ bool raycolor(
     // Recursively call on reflected ray - if we hit anything, we add that color on with a coef
     Ray reflectedRay;
     reflectedRay.origin = ray.origin + t * ray.direction;
-    reflectedRay.direction = reflect(ray.origin + t * ray.direction, n).normalized();
+    reflectedRay.direction = reflect(ray.direction, n).normalized();
     Vector3d reflected_rgb;
 
     if ( raycolor(reflectedRay, EPSILON, objects, lights, num_recursive_calls + 1, reflected_rgb) ) {
