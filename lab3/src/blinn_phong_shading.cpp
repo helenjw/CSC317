@@ -42,7 +42,7 @@ Eigen::Vector3d blinn_phong_shading(
     bool hit = first_hit(toLight, EPSILON, objects, temp_hit_id, temp_t, temp_n);
 
     // If we don't hit anything, we have reached a light source (not in shadow)
-    if (!hit) {
+    if (!hit || temp_t >= t_toLight) {
       Vector3d I = lights[i]->I;
       Vector3d h = (-ray.direction.normalized() + toLight.direction).normalized();
 
