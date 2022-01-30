@@ -9,9 +9,243 @@
     "width": 1.7777777778
   },
   "materials": [
+    {
+      "name": "Face",
+      "ka": [0.96,0.73,0.52],
+      "kd": [0.96,0.73,0.52],
+      "ks": [0,0,0],
+      "km": [0,0,0],
+      "phong_exponent": 0
+    },
+    {
+      "name": "Nose",
+      "ka": [0.86,0.63,0.42],
+      "kd": [0.86,0.63,0.42],
+      "ks": [0.1,0.1,0.1],
+      "km": [0.1,0.1,0.1],
+      "phong_exponent": 0
+    },
+    {
+      "name": "Lips",
+      "ka": [0.52,0.16,0.13],
+      "kd": [0.52,0.16,0.13],
+      "ks": [0.52,0.16,0.13],
+      "km": [0.52,0.16,0.13],
+      "phong_exponent": 3000
+    },
+    {
+      "name": "Hair",
+      "ka": [0.04,0.14,0.30],
+      "kd": [0.04,0.14,0.30],
+      "ks": [0.1,0.1,0.1,0.1],
+      "km": [0.04,0.14,0.30],
+      "phong_exponent": 3000
+    },
+    {
+      "name": "Blue",
+      "ka": [0.61,0.78,0.97],
+      "kd": [0.61,0.78,0.97],
+      "ks": [0,0,0],
+      "km": [0,0,0],
+      "phong_exponent": 0
+    },
+    {
+      "name": "Button",
+      "ka": [0.1,0.1,0.1],
+      "kd": [0.1,0.1,0.1],
+      "ks": [0.9,0.9,0.9],
+      "km": [0.1,0.1,0.1],
+      "phong_exponent": 0
+    },
+    {
+      "name": "ButtonHole",
+      "ka": [0,0,0],
+      "kd": [0,0,0],
+      "ks": [0,0,0],
+      "km": [0,0,0],
+      "phong_exponent": 0
+    },
+    {
+      "name": "Mole",
+      "ka": [0,0,0],
+      "kd": [0,0,0],
+      "ks": [0,0,0],
+      "km": [0,0,0],
+      "phong_exponent": 0
+    }
   ],
   "lights":[
+    {
+      "type": "directional",
+      "direction": [0,0,-1],
+      "color": [0.6,0.6,0.8]
+    },
+    {
+      "type": "point",
+      "position": [-5,-2,1],
+      "color": [0.3,0.3,0.4]
+    }
   ],
+
   "objects": [
+    {
+      "type": "sphere",
+      "material": "Face",
+      "center": [0,0,1.2],
+      "radius": 0.6
+    },
+    {
+      "type": "sphere",
+      "material": "Button",
+      "center": [-0.22,0,2],
+      "radius": 0.1
+    },
+    {
+      "type": "sphere",
+      "material": "Button",
+      "center": [0.22,0,2],
+      "radius": 0.1
+    },
+    {
+      "type": "sphere",
+      "material": "ButtonHole",
+      "center": [0.22,0.04,2],
+      "radius": 0.03
+    },
+    {
+      "type": "sphere",
+      "material": "ButtonHole",
+      "center": [0.16,0,2],
+      "radius": 0.03
+    },
+    {
+      "type": "sphere",
+      "material": "ButtonHole",
+      "center": [0.28,0,2],
+      "radius": 0.03
+    },
+    {
+      "type": "sphere",
+      "material": "ButtonHole",
+      "center": [-0.22,-0.04,2],
+      "radius": 0.03
+    },
+    {
+      "type": "sphere",
+      "material": "ButtonHole",
+      "center": [-0.22,0.04,2],
+      "radius": 0.03
+    },
+    {
+      "type": "sphere",
+      "material": "ButtonHole",
+      "center": [-0.16,0,2],
+      "radius": 0.03
+    },
+    {
+      "type": "sphere",
+      "material": "ButtonHole",
+      "center": [-0.28,0,2],
+      "radius": 0.03
+    },
+    {
+      "type": "sphere",
+      "material": "ButtonHole",
+      "center": [0.22,-0.04,2],
+      "radius": 0.03
+    },
+    {
+      "type": "plane",
+      "material": "Blue",
+      "point": [0,-10,0],
+      "normal": [0,1,0]
+    },
+    {
+      "type": "triangle",
+      "material": "Nose",
+      "corners": [
+        [-0.07,-0.2,1.9],
+        [0.07,-0.2,1.9],
+        [0,-0.1,1.9]
+      ]
+    },
+    {
+      "type": "triangle",
+      "material": "Lips",
+      "corners": [
+        [0.4,-0.3,1.6],
+        [0,-0.3,2],
+        [0,-0.4,2]
+      ]
+    },
+    {
+      "type": "triangle",
+      "material": "Lips",
+      "corners": [
+        [-0.4,-0.3,1.6],
+        [0,-0.3,2],
+        [0,-0.4,2]
+      ]
+    },
+    {
+      "type": "triangle",
+      "material": "Lips",
+      "corners": [
+        [0,-0.3,2],
+        [-0.25,-0.3,1.7],
+        [-0.05,-0.27,1.7]
+      ]
+    },
+    {
+      "type": "triangle",
+      "material": "Lips",
+      "corners": [
+        [0,-0.3,2],
+        [0.25,-0.3,1.7],
+        [0.05,-0.27,1.7]
+      ]
+    },
+    {
+      "type": "sphere",
+      "material": "ButtonHole",
+      "center": [0.16,-0.2,1.75],
+      "radius": 0.01
+    },
+    {
+      "type": "triangle",
+      "material": "Hair",
+      "corners": [
+        [0,0.6,2],
+        [0.55,0.6,1.8],
+        [0.55,-0.1,2]
+      ]
+    },
+    {
+      "type": "triangle",
+      "material": "Hair",
+      "corners": [
+        [0,0.6,2],
+        [-0.55,0.6,1.7],
+        [-0.55,-0.1,2]
+      ]
+    },
+    {
+      "type": "triangle",
+      "material": "Hair",
+      "corners": [
+        [0,0.1,1],
+        [-0.7,0.1,1],
+        [-0.7,-0.6,1]
+      ]
+    },
+    {
+      "type": "triangle",
+      "material": "Hair",
+      "corners": [
+        [0,0.1,1],
+        [0.7,0.1,1],
+        [0.7,-0.6,1]
+      ]
+    }
   ]
 }
