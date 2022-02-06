@@ -45,3 +45,4 @@ bool Sphere::intersect(
 
   return true;
 }
+

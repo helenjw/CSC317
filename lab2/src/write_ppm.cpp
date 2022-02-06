@@ -34,3 +34,4 @@ bool write_ppm(
   file.close();
   return true;
 }
+

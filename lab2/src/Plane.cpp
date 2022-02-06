@@ -20,3 +20,4 @@ bool Plane::intersect(
 
   return t >=  min_t ? true : false;
 }
+

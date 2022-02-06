@@ -32,3 +32,4 @@ bool first_hit(
   n = normal;
   return true;
 }
+
