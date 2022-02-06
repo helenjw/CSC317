@@ -55,3 +55,4 @@ Eigen::Vector3d blinn_phong_shading(
   
   return rgb;
 }
+

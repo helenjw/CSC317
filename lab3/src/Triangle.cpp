@@ -56,3 +56,4 @@ bool Triangle::intersect(
   n = (B - A).cross(C - A).normalized();
   return true;
 }
+

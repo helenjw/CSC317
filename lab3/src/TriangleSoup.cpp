@@ -7,3 +7,4 @@ bool TriangleSoup::intersect(
   int hit_id;
   return first_hit(ray, min_t, triangles, hit_id, t, n);
 }
+

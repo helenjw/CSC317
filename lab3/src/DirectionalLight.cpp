@@ -9,4 +9,3 @@ void DirectionalLight::direction(
   max_t = numeric_limits<double>::infinity();
   return;
 }
-

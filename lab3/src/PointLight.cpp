@@ -7,3 +7,4 @@ void PointLight::direction(
   max_t = (this->p - q).norm();
   return;
 }
+

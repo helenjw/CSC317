@@ -41,3 +41,4 @@ bool raycolor(
 
   return hit;
 }
+
