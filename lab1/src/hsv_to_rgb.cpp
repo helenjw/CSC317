@@ -53,4 +53,3 @@ void hsv_to_rgb(
   b = 255.0 * (b + m);
   return;
 }
-

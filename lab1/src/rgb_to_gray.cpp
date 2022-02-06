@@ -20,4 +20,3 @@ void rgb_to_gray(
   return;
 }
 
-

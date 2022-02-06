@@ -25,3 +25,4 @@ void simulate_bayer_mosaic(
     }
   }
 }
+

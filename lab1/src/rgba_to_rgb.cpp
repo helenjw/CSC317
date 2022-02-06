@@ -16,3 +16,4 @@ void rgba_to_rgb(
     }
   }
 }
+
