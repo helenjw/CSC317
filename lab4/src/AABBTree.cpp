@@ -1,6 +1,7 @@
 #include "AABBTree.h"
 #include "insert_box_into_box.h"
 #include <limits>
+#include <iostream>
 using namespace std;
 
 AABBTree::AABBTree(
@@ -14,19 +15,30 @@ AABBTree::AABBTree(
   this->left = NULL;
   this->right = NULL;
 
-  if (n == 2) {
-    this->left = objects[0];
-    insert_box_into_box(objects[0]->box, this->box);
+  switch (n) {
+    case 0:
+      return;
 
-    this->right = objects[1];
-    insert_box_into_box(objects[1]->box, this->box);
-    return;
+    case 1:
+      this->left = objects[0];
+      insert_box_into_box(objects[0]->box, this->box);
+      return;
+    
+    case 2:
+      this->left = objects[0];
+      insert_box_into_box(objects[0]->box, this->box);
+
+      this->right = objects[1];
+      insert_box_into_box(objects[1]->box, this->box);
+      return;
+    
+    default:
+      break;
   }
-  else if (n == 1)
-  {
-    this->left = objects[0];
-    insert_box_into_box(objects[0]->box, this->box);
-    return;
+
+  // Insert all the objects into current box
+  for (int i = 0; i < n; i++) {
+    insert_box_into_box(objects[i]->box, this->box);
   }
 
   // Find the longest axis
@@ -35,32 +47,34 @@ AABBTree::AABBTree(
 
   for (int a = 0; a < 3; a++) {
     double length = abs(this->box.max_corner(a) - this->box.min_corner(a));
-
     if (length > longest_len){
       longest_len = length;
       axis = a;
     }
   }
 
+  // Split objects along the axis
   double mid = this->box.center()[axis];
 
-  // Split objects along the axis
+  // Lambda function to sort the list by items smaller than midpoint and larger
+  vector< shared_ptr<Object> > sortedObjects(objects);
+  auto fct = [&axis](const shared_ptr<Object> &a, const shared_ptr<Object> &b) {
+    return a->box.center()[axis] < b->box.center()[axis];
+  };
+  sort(sortedObjects.begin(), sortedObjects.end(), fct);
+
+  // Put half the sorted list on the left and the other on the right
+  // I do this because if I partition objects on the l & r based on midpoint, one list can be empty and the function can infinitely recurse
   vector< shared_ptr<Object> > leftside;
   vector< shared_ptr<Object> > rightside;
-
-  for (int i = 0; i < objects.size(); i++) {
-    // Left box
-    if (objects[i]->box.center()[axis] < mid) {
+  for (int i = 0; i < n; i++) {
+    if (i < n / 2) {
       leftside.push_back(objects[i]);
-    } 
-
-    // Right box
+    }
     else {
       rightside.push_back(objects[i]);
     }
   }
-
-  if (leftside.empty() || rightside.empty()) throw;
 
   this->left = make_shared<AABBTree>(leftside, a_depth + 1);
   this->right = make_shared<AABBTree>(rightside, a_depth + 1);

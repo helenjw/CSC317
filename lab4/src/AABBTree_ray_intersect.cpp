@@ -25,15 +25,15 @@ bool AABBTree::ray_intersect(
   // 1+ hit(s)
   if (left_hit && right_hit) {
     t = min(t_left, t_right);
-    descendant = (t_left < t_right) ? leftChildren : rightChildren;
+    descendant = (t_left < t_right) ? this->left : this->right;
 
   } else if (left_hit) {
     t = t_left;
-    descendant = leftChildren;
+    descendant = this->left;
 
   } else if (right_hit) {
     t = t_right;
-    descendant = rightChildren;
+    descendant = this->right;
   } 
   
   return true;
