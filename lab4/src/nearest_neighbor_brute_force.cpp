@@ -1,5 +1,6 @@
 #include "nearest_neighbor_brute_force.h"
-#include <limits>// std::numeric_limits<double>::infinity();
+#include <limits>
+using namespace std;
 
 void nearest_neighbor_brute_force(
   const Eigen::MatrixXd & points,
@@ -7,9 +8,19 @@ void nearest_neighbor_brute_force(
   int & I,
   double & sqrD)
 {
-  ////////////////////////////////////////////////////////////////////////////
-  // Replace with your code here:
-  I = -1;
-  sqrD = 0;
-  ////////////////////////////////////////////////////////////////////////////
+  double smallest_dist = numeric_limits<double>::infinity();
+  int smallest_I = -1;
+
+  for (int i = 0; i < points.rows(); i++) {
+    double temp_dist = (points.row(i) - query).norm();
+
+    if (temp_dist < smallest_dist) {
+      smallest_dist = temp_dist;
+      smallest_I = i;
+    }
+  }
+
+  I = smallest_I;
+  sqrD = smallest_dist;
+  return;
 }
