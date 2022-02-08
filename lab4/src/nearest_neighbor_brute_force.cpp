@@ -12,7 +12,7 @@ void nearest_neighbor_brute_force(
   int smallest_I = -1;
 
   for (int i = 0; i < points.rows(); i++) {
-    double temp_dist = (points.row(i) - query).norm();
+    double temp_dist = (points.row(i) - query).squaredNorm();
 
     if (temp_dist < smallest_dist) {
       smallest_dist = temp_dist;
