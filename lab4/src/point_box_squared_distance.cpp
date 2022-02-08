@@ -14,11 +14,15 @@ double point_box_squared_distance(
       continue;
     }
 
-    double dist_to_min = abs(query[axis] - box.min_corner(axis));
-    double dist_to_max = abs(query[axis] - box.max_corner(axis));
+    // point is left of box
+    if (query[axis] < box.min_corner(axis)) {
+      ans += (box.min_corner(axis) - query[axis]) * (box.min_corner(axis) - query[axis]);
+    }
 
-    // Add the square of which ever distance is smaller
-    ans += (dist_to_max > dist_to_min) ? dist_to_max * dist_to_max : dist_to_min * dist_to_min;
+    // point is right of box
+    else {
+      ans += (query[axis] - box.max_corner(axis)) * (query[axis] - box.max_corner(axis));
+    }
   }
 
   return ans;
