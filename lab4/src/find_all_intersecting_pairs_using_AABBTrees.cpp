@@ -10,9 +10,7 @@ void find_all_intersecting_pairs_using_AABBTrees(
   std::vector<std::pair<std::shared_ptr<Object>,std::shared_ptr<Object> > > & leaf_pairs)
 {
   list<Node> Q;
-  list<Node> queue;
   Q.push_back(make_pair(rootA, rootB));
-  queue.push_back(make_pair(rootA, rootB));
 
   while( !Q.empty() ) {
     Node curr_node = Q.front();
