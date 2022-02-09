@@ -1,4 +1,5 @@
 #include "triangle_triangle_intersection.h"
+#include "ray_intersect_triangle.h"
 
 bool triangle_triangle_intersection(
   const Eigen::RowVector3d & A0,
@@ -8,8 +9,16 @@ bool triangle_triangle_intersection(
   const Eigen::RowVector3d & B1,
   const Eigen::RowVector3d & B2)
 {
-  ////////////////////////////////////////////////////////////////////////////
-  // Replace with your code here:
-  return false; 
-  ////////////////////////////////////////////////////////////////////////////
+  double t;
+
+  // Take triangle A, and make each edge a "ray". See if the ray hits triangle B
+  if (
+    ray_intersect_triangle(Ray(A0, A1-A0), B0, B1, B2, 0, 1, t) ||
+    ray_intersect_triangle(Ray(A1, A1-A2), B0, B1, B2, 0, 1, t) ||
+    ray_intersect_triangle(Ray(A2, A2-A0), B0, B1, B2, 0, 1, t)
+  ) {
+    return true;
+  }
+
+  return false;
 }
