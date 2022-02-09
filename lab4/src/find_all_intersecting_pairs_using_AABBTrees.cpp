@@ -10,7 +10,9 @@ void find_all_intersecting_pairs_using_AABBTrees(
   std::vector<std::pair<std::shared_ptr<Object>,std::shared_ptr<Object> > > & leaf_pairs)
 {
   list<Node> Q;
+  list<Node> queue;
   Q.push_back(make_pair(rootA, rootB));
+  queue.push_back(make_pair(rootA, rootB));
 
   while( !Q.empty() ) {
     Node curr_node = Q.front();
@@ -26,45 +28,46 @@ void find_all_intersecting_pairs_using_AABBTrees(
 
     // A is a leaf and B isn't
     else if (!A && B) {
-      if ( B->left && box_box_intersect(A->box, B->left->box) ) {
-        leaf_pairs.push_back( make_pair(curr_node.first, B->left) );
+      if ( B->left && box_box_intersect(curr_node.first->box, B->left->box) ) {
+        Q.push_back( make_pair(curr_node.first, B->left) );
       }
 
-      if ( B->right && box_box_intersect(A->box, B->right->box) ) {
-        leaf_pairs.push_back( make_pair(curr_node.first, B->right) );
+      if ( B->right && box_box_intersect(curr_node.first->box, B->right->box) ) {
+        Q.push_back( make_pair(curr_node.first, B->right) );
       }
     }
 
     // A isn't and B is
     else if (A && !B) {
-      if ( A->left && box_box_intersect(A->left->box, B->box) ) {
-        leaf_pairs.push_back( make_pair(A->left, curr_node.second) );
+      if ( A->left && box_box_intersect(A->left->box, curr_node.second->box) ) {
+        Q.push_back( make_pair(A->left, curr_node.second) );
       }
 
-      if ( A->right && box_box_intersect(A->right->box, B->box) ) {
-        leaf_pairs.push_back( make_pair(A->right, curr_node.second) );
+      if ( A->right && box_box_intersect(A->right->box,  curr_node.second->box) ) {
+        Q.push_back( make_pair(A->right, curr_node.second) );
       }
     }
 
     // We are not at any leaf nodes
     else {
       if ( A->left && B->left && box_box_intersect(A->left->box, B->left->box) ) {
-        leaf_pairs.push_back( make_pair(A->left, B->left) );
+        Q.push_back( make_pair(A->left, B->left) );
       }
 
       if ( A->left && B->right && box_box_intersect(A->left->box, B->right->box) ) {
-        leaf_pairs.push_back( make_pair(A->left, B->right) );
+        Q.push_back( make_pair(A->left, B->right) );
       }
 
       if ( A->right && B->left && box_box_intersect(A->right->box, B->left->box) ) {
-        leaf_pairs.push_back( make_pair(A->right, B->left) );
+        Q.push_back( make_pair(A->right, B->left) );
       }
 
       if ( A->right && B->right && box_box_intersect(A->right->box, B->right->box) ) {
-        leaf_pairs.push_back( make_pair(A->right, B->right) );
+        Q.push_back( make_pair(A->right, B->right) );
       }
     }
   }
 
   return;
 }
+
