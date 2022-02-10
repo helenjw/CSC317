@@ -25,4 +25,3 @@ bool triangle_triangle_intersection(
 
   return false;
 }
-

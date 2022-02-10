@@ -52,4 +52,3 @@ bool ray_intersect_triangle(
 
   return true;
 }
-

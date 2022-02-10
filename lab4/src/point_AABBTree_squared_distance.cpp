@@ -46,3 +46,4 @@ bool point_AABBTree_squared_distance(
 
   return (min_sqrd <= sqrd && sqrd <= max_sqrd);
 }
+

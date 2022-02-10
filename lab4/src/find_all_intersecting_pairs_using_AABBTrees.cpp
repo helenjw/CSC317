@@ -68,4 +68,3 @@ void find_all_intersecting_pairs_using_AABBTrees(
 
   return;
 }
-

@@ -43,4 +43,3 @@ bool ray_intersect_triangle_mesh_brute_force(
 
   return false;
 }
-

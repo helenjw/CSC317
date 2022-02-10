@@ -38,4 +38,3 @@ bool AABBTree::ray_intersect(
   
   return true;
 }
-

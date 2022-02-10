@@ -24,3 +24,4 @@ void nearest_neighbor_brute_force(
   sqrD = smallest_dist;
   return;
 }
+

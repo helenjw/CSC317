@@ -1,7 +1,6 @@
 #include "AABBTree.h"
 #include "insert_box_into_box.h"
 #include <limits>
-#include <iostream>
 using namespace std;
 
 AABBTree::AABBTree(

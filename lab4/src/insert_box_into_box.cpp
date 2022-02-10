@@ -15,4 +15,3 @@ void insert_box_into_box(
 
   return;
 }
-

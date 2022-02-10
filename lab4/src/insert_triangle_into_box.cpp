@@ -16,5 +16,3 @@ void insert_triangle_into_box(
     B.max_corner(axis) = max({B.max_corner(axis), a[axis], b[axis], c[axis]});
   }
 }
-
-

@@ -27,3 +27,4 @@ double point_box_squared_distance(
 
   return ans;
 }
+

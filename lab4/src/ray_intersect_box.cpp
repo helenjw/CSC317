@@ -1,5 +1,4 @@
 #include "ray_intersect_box.h"
-#include <iostream>
 #include <vector>
 using namespace std;
 
