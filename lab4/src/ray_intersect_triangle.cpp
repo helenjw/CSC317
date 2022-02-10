@@ -11,19 +11,14 @@ bool ray_intersect_triangle(
   double & t)
 {
   // Ch. 4.4.2 - intersection with triangle
-  // Corners
-  Vector3d A_T = A.transpose();
-  Vector3d B_T = B.transpose();
-  Vector3d C_T = C.transpose();
-
   // Ray
-  Vector3d D = ray.direction;
-  Vector3d E = ray.origin;
+  RowVector3d D = ray.direction;
+  RowVector3d E = ray.origin;
 
   // System of equations
-  Vector3d A_minus_B = A_T - B_T;
-  Vector3d A_minus_C = A_T - C_T;
-  Vector3d A_minus_E = A_T - E;
+  RowVector3d A_minus_B = A - B;
+  RowVector3d A_minus_C = A - C;
+  RowVector3d A_minus_E = A - E;
 
   double a = A_minus_B[0];
   double b = A_minus_B[1];
@@ -41,7 +36,7 @@ bool ray_intersect_triangle(
 
   t = -(f * (a * k - j * b) + e * (j * c - a * l) + d * (b * l - k * c)) / m;
 
-  if (t < min_t) {
+  if (t < min_t || t > max_t) {
     return false;
   }
 
