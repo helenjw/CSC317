@@ -17,6 +17,9 @@ bool write_obj(
   
   // Reference: https://en.wikipedia.org/wiki/Wavefront_.obj_file
   ofstream file(filename);
+  if (!file.is_open()) {
+    return false;
+  }
 
   // Write vertex
   for (int i = 0; i < V.rows(); i++) {
@@ -25,7 +28,7 @@ bool write_obj(
 
   // Write vertex texture 
   for (int i = 0; i < UV.rows(); i++) {
-    file << "vt " << UV(i, 0) << " " << UV(i, 1) << " " << UV(i, 2) << endl;
+    file << "vt " << UV(i, 0) << " " << UV(i, 1) << endl;
   }
 
   // Write vertex normal 
@@ -39,7 +42,7 @@ bool write_obj(
     file << "f ";
 
     for (int j = 0; j < F.cols(); j++) {
-      file << F(i, j) + 1 << "/" << UF(i, j) + 1 << "/" << NF(i, j) << " "; // .obj file is 1 indexed
+      file << F(i, j) + 1 << "/" << UF(i, j) + 1 << "/" << NF(i, j) + 1 << " "; // .obj file is 1 indexed
     }
 
     file << endl;
@@ -48,3 +51,4 @@ bool write_obj(
   file.close();
   return true;
 }
+
