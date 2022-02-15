@@ -7,7 +7,7 @@ void per_face_normals(
   const Eigen::MatrixXi & F,
   Eigen::MatrixXd & N)
 {
-  N.resize(F.rows(), 3);
+  N = MatrixXd::Zero(F.rows(),3);
 
   for (int triangle = 0; triangle < F.rows(); triangle++) {
     int a = F(triangle, 0);
