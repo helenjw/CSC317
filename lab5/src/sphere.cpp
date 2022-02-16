@@ -39,11 +39,11 @@ void sphere(
 
       // Store into matrix
       int vertex = row * (num_faces_v + 1) + col; 
-      V.row(vertex) = Vector3d(x, y, z); // stores duplicates at col = 0, col = end to simplify face code
-      NV.row(vertex) = Vector3d(x, y, z); // vector from origin to (x, y, z) is also the normal
+      V.row(vertex) = Vector3d(y, z, x); // stores duplicates at col = 0, col = end to simplify face code
+      NV.row(vertex) = Vector3d(y, z, x); // vector from origin to (x, y, z) is also the normal
 
       // Calculate (u,v) mapping
-      UV.row(vertex) = Vector2d(U_INCREMENT * col, V_INCREMENT * row);
+      UV.row(vertex) = Vector2d(U_INCREMENT * col, V_INCREMENT * (num_faces_u + 1 - row));
     }
   }
 
