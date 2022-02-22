@@ -23,8 +23,6 @@ out vec4 pos_cs_in;
 // expects: PI, model
 void main()
 {
-  /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code 
-  pos_cs_in = vec4(pos_vs_in,1.0);
-  /////////////////////////////////////////////////////////////////////////////
+  pos_cs_in = proj * view * model(is_moon, animation_seconds) * vec4(pos_vs_in, 1.0);
 }
+
