@@ -14,9 +14,16 @@ in vec4 pos_cs_in[];
 out vec4 pos_es_in[];
 void main()
 {   
-  /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code:
+  // Reference: https://stackoverflow.com/questions/24083656/tessellation-shader-opengl
+
+  // Divide inside of triangle by 5
+  gl_TessLevelInner[0] = 5;
+
+  // Divide each edge of the triangle by 5
+  gl_TessLevelOuter[0] = 5;
+  gl_TessLevelOuter[1] = 5;
+  gl_TessLevelOuter[2] = 5;
+  
   pos_es_in[gl_InvocationID] = pos_cs_in[gl_InvocationID];
-  /////////////////////////////////////////////////////////////////////////////
 }
 
