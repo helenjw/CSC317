@@ -28,12 +28,12 @@ void main()
   // 3D position before applying model, view or projection transformations (e.g., point on unit sphere)
   sphere_fs_in = normalize(interpolate(gl_TessCoord, pos_es_in[0].xyz, pos_es_in[1].xyz, pos_es_in[2].xyz));
 
-  // view and model transformed 3D position
-  mat4 view_model = view * model(is_moon, animation_seconds);
-  view_pos_fs_in = view_model * vec4(sphere_fs_in, 1.0);
+  // view and model transformed 3D position of sphere
+  mat4 model = model(is_moon, animation_seconds);
+  view_pos_fs_in = view * model * vec4(sphere_fs_in, 1.0);
 
-  // view and model transformed 3D normal
-  normal_fs_in = (transpose(inverse(view_model)) * vec4(sphere_fs_in, 1.0)).xyz;
+  // view and model transformed 3D normal of sphere 
+  normal_fs_in = (transpose(inverse(view * model)) * vec4(sphere_fs_in, 1.0)).xyz;
 
   // projected, view, and model transformed 3D position
   pos_fs_in = proj * view_pos_fs_in;
