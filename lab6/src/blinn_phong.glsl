@@ -20,10 +20,10 @@ vec3 blinn_phong(
   vec3 v,
   vec3 l)
 {
-  /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code 
-  return vec3(1,1,1);
-  /////////////////////////////////////////////////////////////////////////////
-}
+  vec3 ambient = ka;
+  vec3 diffuse = kd * max( 0, dot(n, l) );
+  vec3 specular = ks * pow ( max ( 0, dot(n, normalize(l + v)) ), p );
 
+  return ambient + diffuse + specular;
+}
 
