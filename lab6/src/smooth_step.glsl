@@ -5,18 +5,21 @@
 // Inputs:
 //   f  input value
 // Returns filtered output value
-float smooth_step( float f)
+float smooth_step(float f)
 {
-  /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code 
-  return f;
-  /////////////////////////////////////////////////////////////////////////////
+  // Reference: https://en.wikipedia.org/wiki/Smoothstep
+  if (f <= 0) {
+    return 0;
+  }
+
+  if (f >= 1) {
+    return 1;
+  } 
+
+  return 3 * pow(f, 2) - 2 * pow(f, 3);
 }
 
-vec3 smooth_step( vec3 f)
+vec3 smooth_step(vec3 f)
 {
-  /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code 
-  return f;
-  /////////////////////////////////////////////////////////////////////////////
+  return vec3( smooth_step(f.x), smooth_step(f.y), smooth_step(f.z) );
 }
