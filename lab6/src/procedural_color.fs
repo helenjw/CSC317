@@ -17,8 +17,25 @@ out vec3 color;
 // expects: blinn_phong, perlin_noise
 void main()
 {
-  /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code 
-  color = vec3(1,1,1);
-  /////////////////////////////////////////////////////////////////////////////
+  // Calculate where light is
+  float theta = 0.25 * M_PI * animation_seconds;
+  vec4 light = view * vec4(4 * cos(theta), 4, 4 * sin(theta), 0.75);
+  
+  // Blinn Phong parameters
+  vec3 ka = vec3(0.01, 0.01, 0.01);
+  vec3 kd = is_moon ? vec3(0.83, 0.83, 0.83) : vec3(0.20, 0.29, 0.8);
+  vec3 ks = vec3(0.8, 0.8, 0.8);
+  float p = is_moon ? 1000 : 500;
+
+  // Since we are looking at the picture straight on, our eye is at (0,0,0)
+  vec3 n = normalize(normal_fs_in);
+  vec3 v = -normalize(view_pos_fs_in.xyz); // from point on surface -> eye
+  vec3 l = normalize(light.xyz - view_pos_fs_in.xyz); // from point on surface -> light
+
+  // Reference: 11.5.3 - Turbulence
+  float w = 5; 
+  float k1 = 15; 
+  float k2 = 5;  
+  float noise = abs( (1 + sin( k1 * (sphere_fs_in.z + perlin_noise(k2 * sphere_fs_in) ) ) / w ) );
+  color = blinn_phong(ka, noise * kd, ks, p, n, v, l);
 }
