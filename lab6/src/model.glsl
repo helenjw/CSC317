@@ -14,7 +14,8 @@ mat4 model(bool is_moon, float time)
   // Transform if it is a moon
   if (is_moon) {
     float theta = 0.5 * M_PI * time;
-    res = translate( vec3(-2 * cos(theta), 0, 2 * sin(theta)) ) * uniform_scale(0.3); // translate and shrink planet by 70%
+    res = transpose(translate(vec3( -2 * cos(theta), 0, 2 * sin(theta) ))); // Translate by total length of 2 in x and z direction
+    res *= uniform_scale(0.3); // shrink planet by 70%
     res *= rotate_about_y(theta); // rotate around earth
   }
 
