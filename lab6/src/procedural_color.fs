@@ -33,9 +33,10 @@ void main()
   vec3 l = normalize(light.xyz - view_pos_fs_in.xyz); // from point on surface -> light
 
   // Reference: 11.5.3 - Turbulence
+  // Reference: http://web.cse.ohio-state.edu/~wang.3602/courses/cse5542-2013-spring/14-noise.pdf
   float w = 5; 
-  float k1 = 15; 
-  float k2 = 5;  
-  float noise = abs( (1 + sin( k1 * (sphere_fs_in.z + perlin_noise(k2 * sphere_fs_in) ) ) / w ) );
+  float k1 = 10; 
+  float k2 = 5;
+  float noise = 1 + sin( sphere_fs_in.x + k1 * perlin_noise(k2 * sphere_fs_in) ) / w;
   color = blinn_phong(ka, noise * kd, ks, p, n, v, l);
 }
