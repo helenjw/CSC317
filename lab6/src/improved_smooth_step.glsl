@@ -8,15 +8,18 @@
 // Returns filtered output value
 float improved_smooth_step( float f)
 {
-  /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code 
-  return f;
-  /////////////////////////////////////////////////////////////////////////////
+  // Reference: https://www.scratchapixel.com/lessons/procedural-generation-virtual-worlds/perlin-noise-part-2/improved-perlin-noise
+  if (f <= 0) {
+    return 0;
+  }
+
+  if (f >= 1) {
+    return 1;
+  } 
+
+  return 6 * pow(f, 5) - 15 * pow(f, 4) + 10 * pow(f, 3);
 }
 vec3 improved_smooth_step( vec3 f)
 {
-  /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code 
-  return f;
-  /////////////////////////////////////////////////////////////////////////////
+  return vec3( smooth_step(f.x), smooth_step(f.y), smooth_step(f.z) );
 }

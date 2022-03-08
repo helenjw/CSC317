@@ -34,9 +34,10 @@ void main()
 
   // Reference: 11.5.3 - Turbulence
   // Reference: http://web.cse.ohio-state.edu/~wang.3602/courses/cse5542-2013-spring/14-noise.pdf
-  float w = 5; 
-  float k1 = 10; 
-  float k2 = 5;
-  float noise = 1 + sin( sphere_fs_in.x + k1 * perlin_noise(k2 * sphere_fs_in) ) / w;
+  float w = 5;
+  float k1 = 20; // twist factor
+  float k2 = 3; // density of twists
+  float twist = 30;
+  float noise = sqrt( abs (1 + sin( sphere_fs_in.x + k1 * perlin_noise(k2 * sphere_fs_in) ) / w) );
   color = blinn_phong(ka, noise * kd, ks, p, n, v, l);
 }
