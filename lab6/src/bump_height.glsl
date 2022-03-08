@@ -8,8 +8,12 @@
 //   reasonable.
 float bump_height( bool is_moon, vec3 s)
 {
-  /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code 
-  return 0 ;
-  /////////////////////////////////////////////////////////////////////////////
+  // Reference: 11.5.3 - Turbulence
+  // Reference: http://web.cse.ohio-state.edu/~wang.3602/courses/cse5542-2013-spring/14-noise.pdf
+  float w = is_moon ? 2 : 3;
+  float k1 = is_moon ? 4 : 5; // twist factor
+  float k2 = is_moon ? 2 : 4; // density of twists
+  float noise = sqrt( abs (1 + sin( s.x + k1 * improved_perlin_noise(k2 * s) ) / w) );
+
+  return smooth_heaviside(noise, is_moon ? 1 : 0.5);
 }

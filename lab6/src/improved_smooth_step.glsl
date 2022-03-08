@@ -21,5 +21,5 @@ float improved_smooth_step( float f)
 }
 vec3 improved_smooth_step( vec3 f)
 {
-  return vec3( smooth_step(f.x), smooth_step(f.y), smooth_step(f.z) );
+  return vec3( improved_smooth_step(f.x), improved_smooth_step(f.y), improved_smooth_step(f.z) );
 }
