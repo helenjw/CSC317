@@ -27,11 +27,11 @@ Eigen::Affine3d euler_angles_to_transform(
     -sin(y), 0, cos(y), 0,
     0, 0, 0, 1;
   
-  // Rotation by z radians about z-axis
+  // Rotation by z radians about x-axis (!)
   Rz.matrix() << 
-    cos(z), -sin(z), 0, 0,
-    sin(z), cos(z), 0, 0,
-    0, 0, 1, 0,
+    1, 0, 0, 0,
+    0, cos(z), -sin(z), 0,
+    0, sin(z), cos(z), 0,
     0, 0, 0, 1;
   
   return Rz * Ry * Rx;
