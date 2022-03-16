@@ -18,7 +18,16 @@ void end_effectors_objective_and_gradient(
   f = [&](const VectorXd & A)->double
   {
     Skeleton new_skeleton = copy_skeleton_at(skeleton, A); // copy skeleton with euler angle list A
-    return ( transformed_tips(new_skeleton, b) - xb0 ).squaredNorm(); // see diff between new position and goal
+    VectorXd new_tips = transformed_tips(new_skeleton, b); // transform tips to new position
+
+    double dist = 0;
+    for (int i = 0; i < b.size(); i++) {
+      dist += pow(new_tips[3 * i + 0] - xb0[3 * i + 0], 2);
+      dist += pow(new_tips[3 * i + 1] - xb0[3 * i + 1], 2);
+      dist += pow(new_tips[3 * i + 2] - xb0[3 * i + 2], 2);
+    }
+
+    return dist;
   };
 
   // function handle that computes the least-squares objective gradient given a list of Euler angles 
