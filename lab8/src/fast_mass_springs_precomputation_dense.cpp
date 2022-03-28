@@ -36,6 +36,9 @@ bool fast_mass_springs_precomputation_dense(
 
   // Populate C - selection matrix for pinned vertices
   C = MatrixXd::Zero(b.rows(), V.rows());
+  for (int i = 0; i < b.rows(); i++) {
+    C(i, b(i)) = 1;
+  }
 
   // Q = (kAᵀA) + (M / ΔT²) + Qc
   MatrixXd Q = k * A.transpose() * A + M / (delta_t * delta_t) + w * C.transpose() * C;
