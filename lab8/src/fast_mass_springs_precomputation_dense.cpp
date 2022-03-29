@@ -41,7 +41,7 @@ bool fast_mass_springs_precomputation_dense(
   }
 
   // Q = (kAᵀA) + (M / ΔT²) + Qc
-  MatrixXd Q = k * A.transpose() * A + M / (delta_t * delta_t) + w * C.transpose() * C;
+  MatrixXd Q = k * A.transpose() * A + M / (delta_t * delta_t);
 
   // Pin vertices - Reference: https://lihd1003.github.io/notebook/csc418/mass_spring_system.html
   MatrixXd Qc = w * C.transpose() * C; // Qc = wCᵀC
@@ -50,3 +50,4 @@ bool fast_mass_springs_precomputation_dense(
   prefactorization.compute(Q);
   return prefactorization.info() != NumericalIssue;
 }
+
